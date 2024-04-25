@@ -22,7 +22,7 @@ function onRestore() {
 <template>
   <Panel position="top-center" class="save-restore-controls">
 
-    <button style="background-color: #ffffff " @click="onSave" class="offset_button">Сохранить состояние</button>
+    <button style="background-color: #ffffff " @click="onSave" class="offset_button">Запомнить состояние</button>
 
     <button style="background-color: #ffffff" @click="onRestore" >Восстановить</button>
 

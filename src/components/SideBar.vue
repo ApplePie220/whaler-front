@@ -28,7 +28,7 @@ const { onDragStart } = useDragAndDrop()
   max-width: 190px;  /* Уменьшим максимальную ширину сайдбара */
   max-height: 300px;/* Установим высоту сайдбара */
   padding: 15px;
-  background: #f8f8f8;  /* Изменим цвет на немного темнее фона */
+  background: rgb(255, 255, 255);  /* Изменим цвет на немного темнее фона */
   border-left: 1px solid #ccc;
   border-bottom: 1px solid #ccc;
   border-top: 1px solid #ccc;
@@ -57,7 +57,7 @@ const { onDragStart } = useDragAndDrop()
 .vue-flow__node-default,
 .vue-flow__node-output {
   padding: 15px 8px;
-  background-color: #f0f0f0;
+  background-color: rgb(255, 255, 255);
   border-radius: 4px;
   cursor: move;
 }

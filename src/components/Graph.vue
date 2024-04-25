@@ -9,6 +9,7 @@ import Header from '@/components/Header.vue'
 import DropzoneBackground from '@/components/DropzoneBackground.vue'
 import Sidebar from '@/components/SideBar.vue'
 import SaveRestoreControls from '@/components/Controls.vue'
+import Disclosure from "@/components/Disclouser.vue";
 import useDragAndDrop from '@/nodes/useDnD.js'
 
 const { onPaneReady, onNodeDragStop, onConnect, addEdges, setViewport, toObject } = useVueFlow()
@@ -114,13 +115,16 @@ function onRemoveNode() {
       <SaveRestoreControls />
       <Controls position="top-right" class="controls-wrapper">
 
-        <ControlButton title="Log `toObject`" @click="logToObject">
-          <Icon name="files" />
-        </ControlButton>
+<!--        <ControlButton title="Log `toObject`" @click="logToObject">-->
+<!--          <Icon name="files" />-->
+<!--        </ControlButton>-->
 
       <div class="sidebar-wrapper">
       <Sidebar />
       </div>
+        <div class="disclosure-wrapper">
+        <Disclosure />
+        </div>
       </Controls>
   </div>
   </div>
@@ -163,5 +167,14 @@ function onRemoveNode() {
 .controls-wrapper:nth-of-type(2) {
   max-height: 300px;
   z-index: 1; /* Установите низкий z-index */
+}
+
+.disclosure-wrapper {
+  max-width: 190px;
+  max-height: 40px;
+  margin-top: 40px;
+  background: rgba(248, 248, 248, 0);
+  box-sizing: border-box;
+
 }
 </style>
