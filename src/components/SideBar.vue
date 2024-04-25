@@ -33,7 +33,6 @@ const { onDragStart } = useDragAndDrop()
   border-bottom: 1px solid #ccc;
   border-top: 1px solid #ccc;
   border-right: 1px solid #ccc;
-  margin-top: 100px;  /* Опустим сайдбар ниже */
   box-sizing: border-box; /* Добавляем этот стиль */
 }
 
@@ -51,7 +50,7 @@ const { onDragStart } = useDragAndDrop()
 }
 
 .vue-flow__node div {
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 
 .vue-flow__node-input,
@@ -59,7 +58,6 @@ const { onDragStart } = useDragAndDrop()
 .vue-flow__node-output {
   padding: 15px 8px;
   background-color: #f0f0f0;
-  border: 1px solid #ccc;
   border-radius: 4px;
   cursor: move;
 }

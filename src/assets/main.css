@@ -26,3 +26,5 @@ body,
 }
 
 .basicflow.dark{background:#000000;color:#fffffb}.basicflow.dark .vue-flow__node{background:hsl(0,0%,10%);color:#fffffb}.basicflow.dark .vue-flow__node.selected{background:hsl(0,0%,20%);border:1px solid hotpink}.basicflow .vue-flow__controls{display:flex;flex-wrap:wrap;justify-content:center}.basicflow.dark .vue-flow__controls{border:1px solid #FFFFFB}.basicflow .vue-flow__controls .vue-flow__controls-button{border:none;border-right:1px solid #eee}.basicflow.dark .vue-flow__controls .vue-flow__controls-button{background:hsl(0,0%,20%);fill:#fffffb;border:none}.basicflow.dark .vue-flow__controls .vue-flow__controls-button:hover{background:hsl(0,0%,30%)}.basicflow.dark .vue-flow__edge-textbg{fill:#292524}.basicflow.dark .vue-flow__edge-text{fill:#fffffb}
+
+.save-restore-controls{font-size:12px}.save-restore-controls button{margin-left:5px;padding:5px;border-radius:8px;font-weight:700;text-transform:uppercase;color: #100d0d;-webkit-box-shadow:0px 5px 10px 0px rgba(0,0,0,.3);box-shadow:0 5px 10px #0000004d;cursor:pointer}  .save-restore-controls button:hover{transform:scale(105%);transition:.25s all ease-in-out}

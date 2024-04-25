@@ -8,13 +8,13 @@ import Icon from '@/components/Icon.vue'
 import Header from '@/components/Header.vue'
 import DropzoneBackground from '@/components/DropzoneBackground.vue'
 import Sidebar from '@/components/SideBar.vue'
+import SaveRestoreControls from '@/components/Controls.vue'
 import useDragAndDrop from '@/nodes/useDnD.js'
 
 const { onPaneReady, onNodeDragStop, onConnect, addEdges, setViewport, toObject } = useVueFlow()
 const { onDragOver, onDrop, onDragLeave, isDragOver } = useDragAndDrop()
 
 const nodes = ref([])
-
 
 /**
  * This is a Vue Flow event-hook which can be listened to from anywhere you call the composable, instead of only on the main component
@@ -51,7 +51,7 @@ onConnect((connection) => {
 
 
 /**
- * toObject transforms your crrent graph data to an easily persist-able object
+ * toObject transforms your current graph data to an easily persist-able object
  */
 function logToObject() {
   console.log(toObject())
@@ -86,30 +86,38 @@ function onRemoveNode() {
     <Header />
   <div class="main-content" @drop="onDrop">
     <div class="work-area">
-    <VueFlow :nodes="nodes" @dragover="onDragOver" @dragleave="onDragLeave">
+    <VueFlow
+        :nodes="nodes"
+        @dragover="onDragOver"
+        @dragleave="onDragLeave"
+    >
 
       <DropzoneBackground
           :style="{
-        backgroundColor: isDragOver ? '#e7f3ff' : 'transparent',
+        backgroundColor: isDragOver ? 'rgba(208,219,232,0.58)' : 'transparent',
         transition: 'background-color 0.2s ease',
         }" />
 
     <MiniMap />
 
-    <Controls position="top-left">
-      <ControlButton title="Reset Transform" @click="resetTransform">
-        <Icon name="reset" />
-      </ControlButton>
+<!--    <Controls position="top-left">-->
+<!--      <ControlButton title="Reset Transform" @click="resetTransform">-->
+<!--        <Icon name="reset" />-->
+<!--      </ControlButton>-->
 
-      <ControlButton title="Log `toObject`" @click="logToObject">
-        <Icon name="log" />
-      </ControlButton>
-      <button class="btn btn-primary" type="button" @click="onRemoveNode">
-        <Icon name="trash" />
-      </button>
-    </Controls>
+
+<!--      <button class="btn btn-primary" type="button" @click="onRemoveNode">-->
+<!--        <Icon name="delete" />-->
+<!--      </button>-->
+<!--    </Controls>-->
   </VueFlow>
-      <Controls position="top-right">
+      <SaveRestoreControls />
+      <Controls position="top-right" class="controls-wrapper">
+
+        <ControlButton title="Log `toObject`" @click="logToObject">
+          <Icon name="files" />
+        </ControlButton>
+
       <div class="sidebar-wrapper">
       <Sidebar />
       </div>
@@ -145,12 +153,15 @@ function onRemoveNode() {
 }
 
 .sidebar-wrapper {
-  max-width: 250px;
-  max-height: 300px;
-  padding: 15px;
-  background: #f8f8f8;
-  border-right: 1px solid #ccc;
+  max-width: 190px;
+  max-height: 250px;
+  margin-top: 40px;
+  background: rgba(248, 248, 248, 0);
   box-sizing: border-box;
 }
-
+/* Стили для второго элемента Controls */
+.controls-wrapper:nth-of-type(2) {
+  max-height: 300px;
+  z-index: 1; /* Установите низкий z-index */
+}
 </style>
