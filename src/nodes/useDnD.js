@@ -1,4 +1,4 @@
-import { useVueFlow } from '@vue-flow/core'
+import { Position, useVueFlow } from '@vue-flow/core'
 import { ref, watch } from 'vue'
 
 let id = 0
@@ -35,7 +35,6 @@ export default function useDragAndDrop() {
             event.dataTransfer.setData('application/vueflow', type)
             event.dataTransfer.effectAllowed = 'move'
         }
-
         label_node = label
         draggedType.value = type
         isDragging.value = true
@@ -90,6 +89,7 @@ export default function useDragAndDrop() {
             type: draggedType.value,
             position,
             label: label_node,
+            data : { toolbarPosition: Position.Left}
         }
 
         /**

@@ -1,15 +1,16 @@
 <script setup>
 import { ref } from 'vue';
 import { VueFlow, useVueFlow } from '@vue-flow/core'
-import { ControlButton, Controls } from '@vue-flow/controls'
+import { Controls } from '@vue-flow/controls'
 import { MiniMap } from '@vue-flow/minimap'
-// import { initialEdges, initialNodes } from '@/nodes/initial-elements.js'
-import Icon from '@/components/Icon.vue'
+
 import Header from '@/components/Header.vue'
 import DropzoneBackground from '@/components/DropzoneBackground.vue'
 import Sidebar from '@/components/SideBar.vue'
 import SaveRestoreControls from '@/components/Controls.vue'
 import Disclosure from "@/components/Disclouser.vue";
+import ToolbarNode from "@/components/ToolbarNode.vue";
+
 import useDragAndDrop from '@/nodes/useDnD.js'
 
 const { onPaneReady, onNodeDragStop, onConnect, addEdges, setViewport, toObject } = useVueFlow()
@@ -99,25 +100,25 @@ function onRemoveNode() {
         transition: 'background-color 0.2s ease',
         }" />
 
+
     <MiniMap />
 
-<!--    <Controls position="top-left">-->
-<!--      <ControlButton title="Reset Transform" @click="resetTransform">-->
-<!--        <Icon name="reset" />-->
-<!--      </ControlButton>-->
+      <template #node-default="nodeProps">
+        <ToolbarNode :data="nodeProps.data" :label="nodeProps.label" :type="nodeProps.type" />
+      </template>
 
+      <template #node-output="nodeProps">
+        <ToolbarNode :data="nodeProps.data" :label="nodeProps.label" :type="nodeProps.type" />
+      </template>
 
-<!--      <button class="btn btn-primary" type="button" @click="onRemoveNode">-->
-<!--        <Icon name="delete" />-->
-<!--      </button>-->
-<!--    </Controls>-->
+      <template #node-input="nodeProps">
+        <ToolbarNode :data="nodeProps.data" :label="nodeProps.label" :type="nodeProps.type"/>
+      </template>
+
   </VueFlow>
       <SaveRestoreControls />
       <Controls position="top-right" class="controls-wrapper">
 
-<!--        <ControlButton title="Log `toObject`" @click="logToObject">-->
-<!--          <Icon name="files" />-->
-<!--        </ControlButton>-->
 
       <div class="sidebar-wrapper">
       <Sidebar />
@@ -177,4 +178,5 @@ function onRemoveNode() {
   box-sizing: border-box;
 
 }
+
 </style>

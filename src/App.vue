@@ -1,10 +1,6 @@
 <script setup>
 // import { ref } from 'vue'
-// import { VueFlow,  } from '@vue-flow/core'
-// import { Background } from '@vue-flow/background'
-// import { ControlButton, Controls } from '@vue-flow/controls'
-// import { MiniMap } from '@vue-flow/minimap'
-import Graph from "@/components/Graph.vue";
+import dockerfileGraph from "@/components/dockerfileGraph.vue";
 
 </script>
 
@@ -13,7 +9,7 @@ import Graph from "@/components/Graph.vue";
 <!--    <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />-->
 
     <div class="wrapper">
-      <graph />
+      <dockerfile-graph />
     </div>
   </header>
 
