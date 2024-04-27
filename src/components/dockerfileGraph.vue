@@ -54,7 +54,7 @@ onConnect((connection) => {
 
 
 /**
- * toObject transforms your current graph data to an easily persist-able object
+ * toObject transforms your current graph data to an easily persist-able objec
  */
 function logToObject() {
   updateNodeParamsAction({ id: props.id, params: value });
