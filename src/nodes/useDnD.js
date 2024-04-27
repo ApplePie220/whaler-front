@@ -1,6 +1,8 @@
 import { Position, useVueFlow } from '@vue-flow/core'
 import { ref, watch } from 'vue'
 
+const { updateNode } = useVueFlow()
+
 let id = 0
 
 /**
@@ -71,6 +73,8 @@ export default function useDragAndDrop() {
         document.removeEventListener('drop', onDragEnd)
     }
 
+
+
     /**
      * Handles the drop event.
      *
@@ -89,7 +93,8 @@ export default function useDragAndDrop() {
             type: draggedType.value,
             position,
             label: label_node,
-            data : { toolbarPosition: Position.Left}
+            data : { toolbarPosition: Position.Left},
+            parameters: ''
         }
 
         /**
@@ -108,6 +113,13 @@ export default function useDragAndDrop() {
         addNodes(newNode)
     }
 
+    function updateParams (idnode, localparams) {
+        console.log(idnode)
+        updateNode(idnode, (node) => ({
+            parameters: localparams
+        }))
+    }
+
     return {
         draggedType,
         isDragOver,
@@ -116,5 +128,6 @@ export default function useDragAndDrop() {
         onDragLeave,
         onDragOver,
         onDrop,
+        updateParams,
     }
 }

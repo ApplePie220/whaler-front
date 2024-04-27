@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from 'vue';
+import { reactive, ref } from 'vue'
 import { VueFlow, useVueFlow } from '@vue-flow/core'
 import { Controls } from '@vue-flow/controls'
 import { MiniMap } from '@vue-flow/minimap'
@@ -13,8 +13,9 @@ import ToolbarNode from "@/components/ToolbarNode.vue";
 
 import useDragAndDrop from '@/nodes/useDnD.js'
 
-const { onPaneReady, onNodeDragStop, onConnect, addEdges, setViewport, toObject } = useVueFlow()
-const { onDragOver, onDrop, onDragLeave, isDragOver } = useDragAndDrop()
+const { findNode, updateNode, updateNodeData, onPaneReady, onNodeDragStop, onConnect, addEdges, setViewport, toObject } = useVueFlow()
+const { onDragOver, onDrop, onDragLeave, isDragOver, updateParams } = useDragAndDrop()
+
 
 const nodes = ref([])
 
@@ -56,28 +57,14 @@ onConnect((connection) => {
  * toObject transforms your current graph data to an easily persist-able object
  */
 function logToObject() {
-  console.log(toObject())
-}
-
-/**
- * Resets the current viewport transformation (zoom & pan)
- */
-function resetTransform() {
-  setViewport({ x: 0, y: 0, zoom: 1 })
+  updateNodeParamsAction({ id: props.id, params: value });
 }
 
 
-function generateRandomNode() {
-    return {
-      id: Math.random().toString(),
-      position: {x: Math.random() * 500, y: Math.random() * 500},
-      label: 'Random Node',
-  }
-}
 
-// remove a single node from the graph
-function onRemoveNode() {
-  nodes.value.pop()
+function handleUpdate(payload) {
+  console.log(payload)
+  updateParams(payload[0], payload[1])
 }
 
 
@@ -92,6 +79,7 @@ function onRemoveNode() {
         :nodes="nodes"
         @dragover="onDragOver"
         @dragleave="onDragLeave"
+        :apply-default="true"
     >
 
       <DropzoneBackground
@@ -104,15 +92,26 @@ function onRemoveNode() {
     <MiniMap />
 
       <template #node-default="nodeProps">
-        <ToolbarNode :data="nodeProps.data" :label="nodeProps.label" :type="nodeProps.type" />
+        <ToolbarNode :data="nodeProps.data" :label="nodeProps.label"
+                     :type="nodeProps.type"
+                     :parameters="nodeProps.parameters"
+                     :id="nodeProps.id"
+                     @editParam="handleUpdate"/>
       </template>
 
       <template #node-output="nodeProps">
-        <ToolbarNode :data="nodeProps.data" :label="nodeProps.label" :type="nodeProps.type" />
+        <ToolbarNode :data="nodeProps.data" :label="nodeProps.label"
+                     :type="nodeProps.type" :parameters="nodeProps.parameters"
+                     :id="nodeProps.id"
+                     @editParam="handleUpdate"/>
       </template>
 
       <template #node-input="nodeProps">
-        <ToolbarNode :data="nodeProps.data" :label="nodeProps.label" :type="nodeProps.type"/>
+        <ToolbarNode :data="nodeProps.data" :label="nodeProps.label"
+                     :type="nodeProps.type"
+                     :parameters= "nodeProps.parameters"
+                     :id="nodeProps.id"
+                     @editParam="handleUpdate"/>
       </template>
 
   </VueFlow>
