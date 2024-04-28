@@ -1,19 +1,19 @@
 <script setup>
-import { reactive, ref } from 'vue'
+import { ref } from 'vue'
 import { VueFlow, useVueFlow } from '@vue-flow/core'
 import { Controls } from '@vue-flow/controls'
 import { MiniMap } from '@vue-flow/minimap'
 
 import Header from '@/components/Header.vue'
-import DropzoneBackground from '@/components/DropzoneBackground.vue'
-import Sidebar from '@/components/SideBar.vue'
-import SaveRestoreControls from '@/components/Controls.vue'
-import Disclosure from "@/components/Disclouser.vue";
-import ToolbarNode from "@/components/ToolbarNode.vue";
+import DropzoneBackground from '@/components/dockerfilegraph/DropzoneBackground.vue'
+import Sidebar from '@/components/dockerfilegraph/SideBar.vue'
+import SaveRestoreControls from '@/components/dockerfilegraph/Controls.vue'
+import Disclosure from "@/components/dockerfilegraph/Disclouser.vue";
+import ToolbarNode from "@/components/dockerfilegraph/ToolbarNode.vue";
 
 import useDragAndDrop from '@/nodes/useDnD.js'
 
-const { findNode, updateNode, updateNodeData, onPaneReady, onNodeDragStop, onConnect, addEdges, setViewport, toObject } = useVueFlow()
+const { onPaneReady, onNodeDragStop, onConnect, addEdges, setViewport, toObject } = useVueFlow()
 const { onDragOver, onDrop, onDragLeave, isDragOver, updateParams } = useDragAndDrop()
 
 

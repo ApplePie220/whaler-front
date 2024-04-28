@@ -23,11 +23,11 @@ const handleLogin = () => {
 const services = [
   {
     title: 'Dockerfile',
-    link: '/#'
+    link: '/'
   },
   {
     title: 'docker-compose',
-    link:'/#/'
+    link:'/dockercompose'
   }
 ]
 
@@ -36,16 +36,16 @@ const services = [
 <template>
   <nav class="header">
 
-    <div class="menu-item"><a href="#">Профиль</a></div>
+    <div class="menu-item"><a href="/profile">Профиль</a></div>
 
     <DropDown title="Создать модель" :items="services" />
 
-    <div class="menu-item"><a href="#">Импорт</a></div>
-    <div class="menu-item"><a href="#">Экспорт</a></div>
-    <div class="menu-item"><a href="#">Сохранить</a></div>
-    <div class="menu-item"><a href="#" >
-      <img src="@/assets/enter2.png" alt="Вход" style="width: 20px; height: 20px; "/>
-    </a></div>
+    <div class="menu-item"><router-link to="/import">Импорт</router-link></div>
+    <div class="menu-item"><router-link to="/export">Экспорт</router-link></div>
+    <div class="menu-item"><router-link to="/save">Сохранить</router-link></div>
+    <div class="menu-item"><router-link to="/authorize">
+      <img src="../assets/enter2.png" alt="Вход" style="width: 20px; height: 20px; "/>
+    </router-link></div>
   </nav>
 </template>
 

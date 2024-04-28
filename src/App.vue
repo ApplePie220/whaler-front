@@ -1,6 +1,6 @@
 <script setup>
 // import { ref } from 'vue'
-import dockerfileGraph from "@/components/dockerfileGraph.vue";
+import dockerfileGraph from "@/components/dockerfilegraph/dockerfileGraph.vue";
 
 </script>
 
@@ -9,7 +9,8 @@ import dockerfileGraph from "@/components/dockerfileGraph.vue";
 <!--    <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />-->
 
     <div class="wrapper">
-      <dockerfile-graph />
+      <router-view></router-view>
+<!--      <dockerfile-graph />-->
     </div>
   </header>
 
