@@ -11,7 +11,7 @@ import {Panel} from "@vue-flow/core";
     <DisclosureButton
         class="flex justify-between rounded-lg bg-gray-200 px-4 py-2 text-left text-sm font-sm text-red-950 hover:bg-gray-400 focus:outline-none focus-visible:ring focus-visible:ring-purple-500/75"
     >
-      <span>Немного о FROM</span>
+      <span>Немного о Services и Service</span>
       <ChevronUpIcon
           :class="open ? 'rotate-180 transform' : ''"
           class="h-5 w-5 text-red-950"
@@ -26,7 +26,7 @@ import {Panel} from "@vue-flow/core";
     <DisclosureButton
         class="flex w-full justify-between rounded-lg bg-gray-200 px-4 py-2 text-left text-sm font-sm text-red-950 hover:bg-gray-400 focus:outline-none focus-visible:ring focus-visible:ring-purple-500/75"
     >
-      <span>Немного о COPY</span>
+      <span>Немного о Depends_on и Environment</span>
       <ChevronUpIcon
           :class="open ? 'rotate-180 transform' : ''"
           class="h-5 w-5 text-red-950"
@@ -36,11 +36,12 @@ import {Panel} from "@vue-flow/core";
       No.
     </DisclosurePanel>
   </Disclosure>
+
   <Disclosure as="div" class="mt-2" v-slot="{ open }">
     <DisclosureButton
         class="flex w-full justify-between rounded-lg bg-gray-200 px-4 py-2 text-left text-sm font-sm text-red-950 hover:bg-gray-400 focus:outline-none focus-visible:ring focus-visible:ring-purple-500/75"
     >
-      <span>Немного об ADD</span>
+      <span>Немного об Image и Volumes</span>
       <ChevronUpIcon
           :class="open ? 'rotate-180 transform' : ''"
           class="h-5 w-5 text-red-950"
@@ -50,11 +51,12 @@ import {Panel} from "@vue-flow/core";
       Yes.
     </DisclosurePanel>
   </Disclosure>
+
   <Disclosure as="div" class="mt-2" v-slot="{ open }">
     <DisclosureButton
         class="flex w-full justify-between rounded-lg bg-gray-200 px-4 py-2 text-left text-sm font-sm text-red-950 hover:bg-gray-400 focus:outline-none focus-visible:ring focus-visible:ring-purple-500/75"
     >
-      <span>Немного о CMD</span>
+      <span>Немного о Networks и Ports</span>
       <ChevronUpIcon
           :class="open ? 'rotate-180 transform' : ''"
           class="h-5 w-5 text-red-950"
@@ -64,6 +66,21 @@ import {Panel} from "@vue-flow/core";
       MHMM.
     </DisclosurePanel>
   </Disclosure>
+
+    <Disclosure as="div" class="mt-2" v-slot="{ open }">
+      <DisclosureButton
+          class="flex w-full justify-between rounded-lg bg-gray-200 px-4 py-2 text-left text-sm font-sm text-red-950 hover:bg-gray-400 focus:outline-none focus-visible:ring focus-visible:ring-purple-500/75"
+      >
+        <span>Немного о Restart</span>
+        <ChevronUpIcon
+            :class="open ? 'rotate-180 transform' : ''"
+            class="h-5 w-5 text-red-950"
+        />
+      </DisclosureButton>
+      <DisclosurePanel class="px-4 pb-2 pt-4 text-sm text-gray-500 disclosure-panel">
+        Что?
+      </DisclosurePanel>
+    </Disclosure>
   </div>
     </Panel>
 </template>

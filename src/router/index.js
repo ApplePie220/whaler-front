@@ -6,6 +6,7 @@ import Import from "@/components/Import.vue";
 import Export from "@/components/Export.vue";
 import SignInOut from "@/components/SignInOut.vue";
 import Save from "@/components/Save.vue";
+import NotFound from "@/components/NotFound.vue";
 
 const router = createRouter({
     mode: 'history',
@@ -45,11 +46,11 @@ const router = createRouter({
             name: 'savefile',
             component: Save
         },
-        // {
-        //     path: '/:catchAll(.*)',
-        //     name: 'notFound',
-        //     component: NotFound
-        // }
+        {
+            path: '/:catchAll(.*)',
+            name: 'notFound',
+            component: NotFound
+        }
 
     ],
     history: createWebHistory()
