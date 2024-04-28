@@ -22,8 +22,7 @@ body,
 
 .vue-flow__minimap {
     transform: scale(75%);
-    transform-origin: bottom left;
-    left: 0;
+    transform-origin: bottom right;
     max-width: 13%;
 }
 

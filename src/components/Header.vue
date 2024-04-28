@@ -42,7 +42,10 @@ const services = [
 
     <div class="menu-item"><a href="#">Импорт</a></div>
     <div class="menu-item"><a href="#">Экспорт</a></div>
-    <div class="menu-item"><a href="#">Вход</a></div>
+    <div class="menu-item"><a href="#">Сохранить</a></div>
+    <div class="menu-item"><a href="#" >
+      <img src="@/assets/enter2.png" alt="Вход" style="width: 20px; height: 20px; "/>
+    </a></div>
   </nav>
 </template>
 
@@ -50,7 +53,7 @@ const services = [
 nav {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between; /* updated */
   border-bottom: 1px solid #ccc; /* add this line */
 }
 

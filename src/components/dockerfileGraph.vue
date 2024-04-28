@@ -116,16 +116,17 @@ function handleUpdate(payload) {
 
   </VueFlow>
       <SaveRestoreControls />
-      <Controls position="top-right" class="controls-wrapper">
-
-
-      <div class="sidebar-wrapper">
-      <Sidebar />
-      </div>
-        <div class="disclosure-wrapper">
+      <div class="disclosure-container">
         <Disclosure />
-        </div>
+      </div>
+      <Controls position="top-right" class="controls-wrapper">
+<!--        <div class="disclosure-wrapper">-->
+<!--        <Disclosure />-->
+<!--        </div>-->
       </Controls>
+      <div class="sidebar-wrapper">
+        <Sidebar />
+      </div>
   </div>
   </div>
   </div>
@@ -159,7 +160,7 @@ function handleUpdate(payload) {
 .sidebar-wrapper {
   max-width: 190px;
   max-height: 250px;
-  margin-top: 40px;
+  margin-top: 150px;
   background: rgba(248, 248, 248, 0);
   box-sizing: border-box;
 }
@@ -169,13 +170,11 @@ function handleUpdate(payload) {
   z-index: 1; /* Установите низкий z-index */
 }
 
-.disclosure-wrapper {
+.disclosure-container {
+  display: flex;
+  justify-content: center;
   max-width: 190px;
-  max-height: 40px;
-  margin-top: 40px;
-  background: rgba(248, 248, 248, 0);
-  box-sizing: border-box;
-
 }
+
 
 </style>

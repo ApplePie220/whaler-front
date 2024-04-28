@@ -1,10 +1,12 @@
 <script setup>
 import useDragAndDrop from '@/nodes/useDnD.js'
+import {Panel} from "@vue-flow/core";
 
 const { onDragStart } = useDragAndDrop()
 </script>
 
 <template>
+  <Panel position="right">
   <div class="sidebar">
     <div class="description">Вы можете переместить эти блоки в рабочую область</div>
 
@@ -18,6 +20,7 @@ const { onDragStart } = useDragAndDrop()
       <div class="vue-flow__node-output" :draggable="true" @dragstart="onDragStart($event, 'output', 'CMD')">CMD</div>
     </div>
   </div>
+  </Panel>
 </template>
 
 <style scoped>
