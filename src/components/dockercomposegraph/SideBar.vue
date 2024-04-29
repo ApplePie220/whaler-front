@@ -15,6 +15,8 @@ const { onDragStart } = useDragAndDrop()
 
       <div class="vue-flow__node-default" :draggable="true" @dragstart="onDragStart($event, 'default', 'Service')">Service</div>
 
+      <div class="vue-flow__node-output" :draggable="true" @dragstart="onDragStart($event, 'output', 'Build')">Build</div>
+
       <div class="vue-flow__node-output" :draggable="true" @dragstart="onDragStart($event, 'output', 'Depends_on')">Depends_on</div>
 
       <div class="vue-flow__node-output" :draggable="true" @dragstart="onDragStart($event, 'output','Environment')">Environment</div>

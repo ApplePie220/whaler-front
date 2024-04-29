@@ -1,5 +1,7 @@
 <script setup>
 import { Panel, useVueFlow } from '@vue-flow/core'
+import saveAs from 'file-saver'
+import download from 'js-file-download'
 
 const flowKey = 'dockerfile_flow'
 
