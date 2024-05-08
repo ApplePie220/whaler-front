@@ -9,7 +9,7 @@
     <transition name="fade" appear>
       <div class="sub-menu" v-if="isOpen">
         <div v-for="(item, i) in items" :key="i" class="menu-item">
-          <a :href="item.link">{{ item.title }}</a>
+          <router-link :to="{name : `${item.link}`}"> {{ item.title }} </router-link>
         </div>
       </div>
     </transition>

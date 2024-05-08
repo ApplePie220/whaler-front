@@ -1,7 +1,7 @@
 {
   "name": "whaler_front",
   "version": "0.0.0",
-  "private": false,
+  "private": true,
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -17,7 +17,9 @@
     "@vue-flow/minimap": "^1.4.0",
     "@vue-flow/node-toolbar": "^1.1.0",
     "autoprefixer": "^10.4.19",
+    "axios": "^1.6.8",
     "file-saver": "^2.0.5",
+    "jenesius-vue-modal": "^1.11.1",
     "js-file-download": "^0.4.12",
     "portal-vue": "^3.0.0-beta.0",
     "postcss": "^8.4.38",

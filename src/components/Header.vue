@@ -1,33 +1,40 @@
 <script setup>
-import { ref } from 'vue';
+import {onMounted, ref} from 'vue';
+// import AuthModal from '@/components/AuthModal.vue'
+// import { mapGetters, mapActions } from 'vuex'
 import DropDown from '@/components/DropDown.vue'
 
+// const { getUser } = mapGetters('user', ['getUser'])
+// const { setUser, deleteUser } = mapActions('user', ['setUser', 'deleteUser'])
+//
+// const isAuthorized = ref(false)
+// const isAuthModalOpen = ref(false)
+//
+// onMounted(() => {
+//   setUser(JSON.parse(localStorage.getItem('user')))
+// })
+//
+// const onAuthBtnClick = () => {
+//   if (getUser.value) {
+//     this.$api.auth.logout()
+//     localStorage.removeItem('user')
+//     deleteUser()
+//     this.$router.push({ name: 'main' })
+//   } else {
+//     isAuthModalOpen.value = true
+//   }
+// }
 
-// Добавьте необходимые функции обработчиков для кнопок
-const handleImport = () => {
-  console.log('Handle Import');
-};
 
-const handleExport = () => {
-  console.log('Handle Export');
-};
-
-const handleProfile = () => {
-  console.log('Handle Profile');
-};
-
-const handleLogin = () => {
-  console.log('Handle Login');
-};
 
 const services = [
   {
     title: 'Dockerfile',
-    link: '/'
+    link: 'dockerfileDiagram'
   },
   {
     title: 'docker-compose',
-    link:'/dockercompose'
+    link:'dockercomposeDiagram'
   }
 ]
 
@@ -43,10 +50,26 @@ const services = [
     <div class="menu-item"><router-link to="/import">Импорт</router-link></div>
     <div class="menu-item"><router-link to="/export">Экспорт</router-link></div>
     <div class="menu-item"><router-link to="/save">Сохранить</router-link></div>
-    <div class="menu-item"><router-link to="/authorize">
-      <img src="../assets/enter2.png" alt="Вход" style="width: 20px; height: 20px; "/>
-    </router-link></div>
+    <div class="menu-item"> <router-link to="/authorize">
+      <img src="../assets/enter2.png"
+           alt="Вход/Выход"
+      />
+<!--    </router-link>-->
+<!--      <img src="../assets/enter2.png"-->
+<!--           alt="Вход/Выход"-->
+<!--           @click="onAuthBtnClick"-->
+<!--           style="width: 20px; height: 20px; "-->
+<!--      />-->
+    </router-link>
+  </div>
+<!--    <auth-modal-->
+<!--        v-if="isAuthModalOpen"-->
+<!--        @close="isAuthModalOpen = false"-->
+<!--    />-->
   </nav>
+
+
+
 </template>
 
 <style scoped>
