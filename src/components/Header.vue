@@ -1,29 +1,45 @@
 <script setup>
 import {onMounted, ref} from 'vue';
-// import AuthModal from '@/components/AuthModal.vue'
-// import { mapGetters, mapActions } from 'vuex'
+import { mapGetters, mapActions } from 'vuex'
 import DropDown from '@/components/DropDown.vue'
 
-// const { getUser } = mapGetters('user', ['getUser'])
-// const { setUser, deleteUser } = mapActions('user', ['setUser', 'deleteUser'])
-//
-// const isAuthorized = ref(false)
+import { useRouter } from 'vue-router';
+
+const { getUser } = mapGetters('user', ['getUser'])
+const { setUser, deleteUser } = mapActions('user', ['setUser', 'deleteUser'])
+
+const isAuthorized = ref(false)
 // const isAuthModalOpen = ref(false)
-//
-// onMounted(() => {
-//   setUser(JSON.parse(localStorage.getItem('user')))
-// })
-//
-// const onAuthBtnClick = () => {
-//   if (getUser.value) {
-//     this.$api.auth.logout()
-//     localStorage.removeItem('user')
-//     deleteUser()
-//     this.$router.push({ name: 'main' })
-//   } else {
-//     isAuthModalOpen.value = true
-//   }
-// }
+const router = useRouter();
+
+onMounted(() => {
+  const sessionId = getCookie('session_id');
+  if (sessionId) {
+    setUser(sessionId);
+  }
+});
+
+const getCookie = (name) => {
+  const cookies = document.cookie.split(';');
+  for (let cookie of cookies) {
+    const [cookieName, cookieValue] = cookie.trim().split('=');
+    if (cookieName === name) {
+      return cookieValue;
+    }
+  }
+  return null;
+};
+
+const onAuthBtnClick = () => {
+  if (getUser.value) {
+    this.$api.auth.logout()
+    document.cookie = 'session_id=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/';
+    deleteUser()
+    router.push({ name: 'dockerfileDiagram' })
+  } else {
+    //pass
+  }
+}
 
 
 
@@ -50,8 +66,8 @@ const services = [
     <div class="menu-item"><router-link to="/import">Импорт</router-link></div>
     <div class="menu-item"><router-link to="/export">Экспорт</router-link></div>
     <div class="menu-item"><router-link to="/save">Сохранить</router-link></div>
-    <div class="menu-item"> <router-link to="/authorize">
-      <img src="../assets/enter2.png"
+    <div class="menu-item"> <router-link to="/authorize" >
+      <img @click="onAuthBtnClick" src="../assets/enter2.png"
            alt="Вход/Выход"
       />
 <!--    </router-link>-->

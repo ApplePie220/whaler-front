@@ -38,18 +38,19 @@ const formSubmit = () => {
 
 const signIn = async () => {
   try{
-    const response = await axios.post('http://localhost:8000/api/v1/authuser/',
-    {
-      withCredentials: true,
-      headers:{
-        accept: 'application/json'
-      },
+    const response = await axios.post('http://localhost:8001/api/v1/authuser/',
+        {
       email: form.value.email,
       password: form.value.password
-    })
-    const data = response.data
-    localStorage.setItem('user', JSON.stringify(data))
-    this.$store.dispatch('user/setUser', data)
+    },
+         {
+          withCredentials: true // Указываем Axios сохранять куки
+        })
+
+    const sessionId = response.headers['set-cookie'][0].split(';')[0].split('=')[1];
+    document.cookie = `session_id=${sessionId}`;
+    localStorage.setItem('user', JSON.stringify(sessionId));
+    this.$store.dispatch('user/setUser', sessionId)
     this.$router.push({ name: 'dockerfileDiagram' })
   } catch (error) {
     console.log(error)
@@ -59,19 +60,20 @@ const signIn = async () => {
 
 const signUp = async () => {
   try{
-    const response = await axios.post('http://localhost:8000/api/v1/createuser/', {
-      withCredentials: true,
-      headers:{
-        accept: 'application/json'
-      },
+    const response = await axios.post('http://localhost:8001/api/v1/createuser/', {
       email: form.value.email,
       password: form.value.password
+    },
+        {
+        withCredentials: true
     })
-    const data = response.data
-    localStorage.setItem('user', JSON.stringify(data))
-    // В случае, если используется VueX
-    this.$store.dispatch('user/setUser', data)
-    this.$router.push({ name: 'dockerfileDiagram' })
+    const sessionId = response.headers['set-cookie'][0].split(';')[0].split('=')[1];
+    // Сохраняем идентификатор сессии в куки
+    document.cookie = `session_id=${sessionId}`;
+
+    localStorage.setItem('user', JSON.stringify(sessionId));
+    this.$store.dispatch('user/setUser', sessionId)
+    router.push({ name: 'dockerfileDiagram' })
   } catch (error){
     console.log(error)
   }
