@@ -1,86 +1,63 @@
 <script setup>
 import Header from '@/components/Header.vue'
-const people = [
+const files = [
   {
-    name: 'Leslie Alexander',
-    email: 'leslie.alexander@example.com',
-    role: 'Co-Founder / CEO',
-    imageUrl:
-        'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-    lastSeen: '3h ago',
-    lastSeenDateTime: '2023-01-23T13:23Z',
+    name: 'Dockerfile_2346522',
+    size: 'dockerfile',
+    type: 'тип',
+    lastModified: '2023-01-23T13:23Z',
   },
   {
-    name: 'Michael Foster',
-    email: 'michael.foster@example.com',
-    role: 'Co-Founder / CTO',
-    imageUrl:
-        'https://images.unsplash.com/photo-1519244703995-f4e0f30006d5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-    lastSeen: '3h ago',
-    lastSeenDateTime: '2023-01-23T13:23Z',
+    name: 'docker-compose.yml_3566543',
+    size: 'docker-compose.yml',
+    type: 'тип',
+    lastModified: '2023-01-23T12:23Z',
   },
   {
-    name: 'Dries Vincent',
-    email: 'dries.vincent@example.com',
-    role: 'Business Relations',
-    imageUrl:
-        'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-    lastSeen: null,
+    name: 'docker-compose.yml_209584',
+    size: 'docker-compose.yml',
+    type: 'тип',
+    lastModified: '2023-01-23T11:23Z',
   },
   {
-    name: 'Lindsay Walton',
-    email: 'lindsay.walton@example.com',
-    role: 'Front-end Developer',
-    imageUrl:
-        'https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-    lastSeen: '3h ago',
-    lastSeenDateTime: '2023-01-23T13:23Z',
-  },
-  {
-    name: 'Courtney Henry',
-    email: 'courtney.henry@example.com',
-    role: 'Designer',
-    imageUrl:
-        'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-    lastSeen: '3h ago',
-    lastSeenDateTime: '2023-01-23T13:23Z',
-  },
-  {
-    name: 'Tom Cook',
-    email: 'tom.cook@example.com',
-    role: 'Director of Product',
-    imageUrl:
-        'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-    lastSeen: null,
+    name: 'Dockerfile_4969604',
+    size: 'dockerfile',
+    type: 'тип',
+    lastModified: '2023-01-23T10:23Z',
   },
 ]
+
+const formatDate = (dateString) => {
+  const date = new Date(dateString);
+  const options = { month: 'long', day: 'numeric', year: 'numeric', hour: '2-digit', minute: '2-digit' };
+  return date.toLocaleString('en-US', options);
+}
 </script>
 
 <template>
   <Header />
-  <ul role="list" class="divide-y divide-gray-100">
-    <li v-for="person in people" :key="person.email" class="flex justify-between gap-x-6 py-5">
-      <div class="flex min-w-0 gap-x-4">
-        <img class="h-12 w-12 flex-none rounded-full bg-gray-50" :src="person.imageUrl" alt="" />
-        <div class="min-w-0 flex-auto">
-          <p class="text-sm font-semibold leading-6 text-gray-900">{{ person.name }}</p>
-          <p class="mt-1 truncate text-xs leading-5 text-gray-500">{{ person.email }}</p>
-        </div>
+  <div class="flex justify-center">
+    <div class="mt-16 w-1/2">
+      <div class="flex justify-between">
+        <p class="text-2xl font-semibold leading-6 text-gray-900">Сохраненные модели</p>
+        <p class="text-lg font-semibold leading-6 text-gray-900">test@mail.ru</p>
       </div>
-      <div class="hidden shrink-0 sm:flex sm:flex-col sm:items-end">
-        <p class="text-sm leading-6 text-gray-900">{{ person.role }}</p>
-        <p v-if="person.lastSeen" class="mt-1 text-xs leading-5 text-gray-500">
-          Last seen <time :datetime="person.lastSeenDateTime">{{ person.lastSeen }}</time>
-        </p>
-        <div v-else class="mt-1 flex items-center gap-x-1.5">
-          <div class="flex-none rounded-full bg-emerald-500/20 p-1">
-            <div class="h-1.5 w-1.5 rounded-full bg-emerald-500" />
+      <ul role="list" class="divide-y divide-gray-100 mt-6">
+        <li v-for="file in files" :key="file.name" class="flex justify-between gap-x-6 py-5">
+          <div class="flex min-w-0 gap-x-4">
+            <div class="min-w-0 flex-auto">
+              <p class="text-sm font-semibold leading-6 text-gray-900">{{ file.name }}</p>
+              <p class="mt-1 truncate text-xs leading-5 text-gray-500">{{ file.size }} - {{ file.type }}</p>
+            </div>
           </div>
-          <p class="text-xs leading-5 text-gray-500">Online</p>
-        </div>
-      </div>
-    </li>
-  </ul>
+          <div class="flex gap-x-2">
+            <button class="bg-gray-200 hover:bg-red-300 text-black font-semibold px-2 py-1 rounded">Удалить</button>
+            <button class="bg-gray-200 hover:bg-blue-300 text-black font-semibold px-2 py-1 rounded">Импорт</button>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
 </template>
 
 <style scoped>

@@ -27,7 +27,7 @@ const router = createRouter({
             path: '/profile',
             name: 'profile',
             component: Profile,
-            meta: { requiresAuth: true }
+            // meta: { requiresAuth: true }
         },
         {
             path: '/import',
@@ -43,7 +43,7 @@ const router = createRouter({
             path: '/save',
             name: 'savefile',
             component: Save,
-            meta: { requiresAuth: true }
+            // meta: { requiresAuth: true }
         },
         {
             path: '/authorize',

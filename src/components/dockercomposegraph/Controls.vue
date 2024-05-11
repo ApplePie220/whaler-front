@@ -6,7 +6,7 @@ const flowKey = 'dockercompose_flow'
 const { toObject, fromObject } = useVueFlow()
 
 function onSave() {
-  localStorage.setItem(flowKey, JSON.stringify(toObject(),null, 4))
+  localStorage.setItem(flowKey, JSON.stringify(toObject()))
 }
 
 function onRestore() {
