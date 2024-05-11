@@ -4,7 +4,6 @@ import dockcomposeGraph from '@/components/dockercomposegraph/dockcomposeGraph.v
 import Profile from "@/components/Profile.vue"
 import Import from "@/components/Import.vue"
 import Export from "@/components/Export.vue"
-import Save from "@/components/Save.vue"
 import NotFound from "@/components/NotFound.vue"
 
 import store from '@/store/index.js'
@@ -38,12 +37,6 @@ const router = createRouter({
             path: '/export',
             name: 'exportfile',
             component: Export
-        },
-        {
-            path: '/save',
-            name: 'savefile',
-            component: Save,
-            // meta: { requiresAuth: true }
         },
         {
             path: '/authorize',

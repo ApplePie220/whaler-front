@@ -41,7 +41,10 @@ const onAuthBtnClick = () => {
   }
 }
 
-
+const authUser = localStorage.getItem('auth')
+function saveUserModel(){
+  console.log("save file")
+}
 
 const services = [
   {
@@ -59,13 +62,14 @@ const services = [
 <template>
   <nav class="header">
 
-    <div class="menu-item"><a href="/profile">Профиль</a></div>
+    <div class="menu-item"><router-link to="/profile">Профиль</router-link></div>
 
     <DropDown title="Создать модель" :items="services" />
 
     <div class="menu-item"><router-link to="/import">Импорт</router-link></div>
     <div class="menu-item"><router-link to="/export">Экспорт</router-link></div>
-    <div class="menu-item"><router-link to="/save">Сохранить</router-link></div>
+    <div class="menu-item" @click="saveUserModel">Сохранить</div>
+<!--    <div class="menu-item" v-show="authUser" @click="saveUserModel">Сохранить</div>-->
     <div class="menu-item"> <router-link to="/authorize" >
       <img @click="onAuthBtnClick" src="../assets/enter2.png"
            alt="Вход/Выход"
