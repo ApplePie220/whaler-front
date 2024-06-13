@@ -1,0 +1,15 @@
+version: "3"
+services:
+  web:
+    ports:
+      - "5001:5000"
+    build: .
+    depends_on:
+      - postgresql
+
+  postgresql:
+    image: postgres:latest
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    environment:
+      POSTGRES_PASSWORD: password

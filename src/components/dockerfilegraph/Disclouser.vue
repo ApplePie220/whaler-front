@@ -64,6 +64,20 @@ import {Panel} from "@vue-flow/core";
       MHMM.
     </DisclosurePanel>
   </Disclosure>
+    <Disclosure as="div" class="mt-2" v-slot="{ open }">
+      <DisclosureButton
+          class="flex w-full justify-between rounded-lg bg-gray-200 px-4 py-2 text-left text-sm font-sm text-red-950 hover:bg-gray-400 focus:outline-none focus-visible:ring focus-visible:ring-purple-500/75"
+      >
+        <span>Немного об ENTRYPOINT</span>
+        <ChevronUpIcon
+            :class="open ? 'rotate-180 transform' : ''"
+            class="h-5 w-5 text-red-950"
+        />
+      </DisclosureButton>
+      <DisclosurePanel class="px-4 pb-2 pt-4 text-sm text-gray-500 disclosure-panel">
+        Ой-ей
+      </DisclosurePanel>
+    </Disclosure>
   </div>
     </Panel>
 </template>

@@ -2,7 +2,6 @@
 import {reactive, ref, watch} from 'vue';
 import { Handle, Position } from '@vue-flow/core'
 import { NodeToolbar } from '@vue-flow/node-toolbar'
-import updateParams from '@/nodes/useDnD.js'
 
 const props = defineProps({
   data: {

@@ -1,6 +1,6 @@
 <script setup>
 import { ref } from 'vue'
-import { VueFlow, useVueFlow } from '@vue-flow/core'
+import { VueFlow, useVueFlow} from '@vue-flow/core'
 import { Controls } from '@vue-flow/controls'
 import { MiniMap } from '@vue-flow/minimap'
 
@@ -10,52 +10,60 @@ import Sidebar from '@/components/dockerfilegraph/SideBar.vue'
 import SaveRestoreControls from '@/components/dockerfilegraph/Controls.vue'
 import Disclosure from "@/components/dockerfilegraph/Disclouser.vue";
 import ToolbarNode from "@/components/dockerfilegraph/ToolbarNode.vue";
+import { useToast, POSITION } from "vue-toastification";
 
 import useDragAndDrop from '@/nodes/useDnD.js'
 
-const { onPaneReady, onNodeDragStop, onConnect, addEdges, setViewport, toObject } = useVueFlow()
-const { onDragOver, onDrop, onDragLeave, isDragOver, updateParams } = useDragAndDrop()
+const { onPaneReady, onNodeDragStop, onConnect, toObject  } = useVueFlow()
+const { onDragOver, onDrop, onDragLeave, isDragOver, updateParams, onConnecting } = useDragAndDrop()
+const toast = useToast();
 
 
 const nodes = ref([])
 
-/**
- * This is a Vue Flow event-hook which can be listened to from anywhere you call the composable, instead of only on the main component
- * Any event that is available as `@event-name` on the VueFlow component is also available as `onEventName` on the composable and vice versa
- *
- * onPaneReady is called when viewpane & nodes have visible dimensions
- */
 onPaneReady(({ fitView }) => {
   fitView()
 })
 
-/**
- * onNodeDragStop is called when a node is done being dragged
- *
- * Node drag events provide you with:
- * 1. the event object
- * 2. the nodes array (if multiple nodes are dragged)
- * 3. the node that initiated the drag
- * 4. any intersections with other nodes
- */
 onNodeDragStop(({ event, nodes, node, intersections }) => {
-  console.log('Node Drag Stop', { event, nodes, node, intersections })
+  if (node.parameters === '') {
+    console.log(`Параметр блока ${node.label} не должен быть пустым`)
+    toast.warning(`Параметр блока ${node.label} не должен быть пустым`,
+        { position: POSITION.BOTTOM_LEFT });
+  }
+  const con1 = (JSON.stringify(toObject()))
+  const edgesData = JSON.parse(con1);
+  // console.log(edgesData['edges'][1])
+  if (edgesData['edges'] && edgesData["edges"].length > 0) {
+
+    const lastEdge = edgesData['edges'][edgesData['edges'].length - 1];
+    const firstEdge = edgesData['edges'][0];
+
+    const targetNodeId = lastEdge.target;
+    const sourceNodeId = firstEdge.source;
+
+    const targetNode = edgesData['nodes'].find(node => node.id === targetNodeId);
+    const sourceNode = edgesData['nodes'].find(node => node.id === sourceNodeId);
+    if (targetNode["type"] !== "output") {
+      console.log('У модели должен быть конечный блок');
+      toast.warning('У модели должен быть конечный блок',
+          { position: POSITION.BOTTOM_LEFT });
+    }
+
+    if (sourceNode["type"] !== "input") {
+      console.log('У модели должен быть начальный блок');
+    }
+  } else {
+    console.log('Связи не найдены');
+  }
+
 })
 
-/**
- * onConnect is called when a new connection is created.
- *
- * You can add additional properties to your new edge (like a type or label) or block the creation altogether by not calling `addEdges`
- */
+
 onConnect((connection) => {
-  addEdges(connection)
+  onConnecting(connection)
 })
 
-
-
-/**
- * toObject transforms your current graph data to an easily persist-able objec
- */
 function logToObject() {
   updateNodeParamsAction({ id: props.id, params: value });
 }
@@ -133,12 +141,9 @@ function handleUpdate(payload) {
 </template>
 
 <style>
-/* import the required styles */
 @import "/node_modules/@vue-flow/core/dist/style.css";
 
-/* import the default theme (optional) */
 @import "/node_modules/@vue-flow/core/dist/theme-default.css";
-/* Установка ширины и высоты для контейнера */
 
 .graph-container {
   display: flex;
@@ -164,10 +169,9 @@ function handleUpdate(payload) {
   background: rgba(248, 248, 248, 0);
   box-sizing: border-box;
 }
-/* Стили для второго элемента Controls */
 .controls-wrapper:nth-of-type(2) {
   max-height: 300px;
-  z-index: 1; /* Установите низкий z-index */
+  z-index: 1;
 }
 
 .disclosure-container {

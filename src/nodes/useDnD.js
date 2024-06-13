@@ -1,7 +1,7 @@
 import { Position, useVueFlow } from '@vue-flow/core'
 import { ref, watch } from 'vue'
 
-const { updateNode } = useVueFlow()
+// const { updateNode, onConnect, addEdges, getNodes } = useVueFlow()
 
 let id = 0
 
@@ -26,7 +26,7 @@ const state = {
 export default function useDragAndDrop() {
     const { draggedType, isDragOver, isDragging } = state
 
-    const { addNodes, screenToFlowCoordinate, onNodesInitialized, updateNode } = useVueFlow()
+    const { addNodes, screenToFlowCoordinate, findNode, onNodesInitialized, updateNode, addEdges, onConnect, getNodes } = useVueFlow()
 
     watch(isDragging, (dragging) => {
         document.body.style.userSelect = dragging ? 'none' : ''
@@ -120,6 +120,19 @@ export default function useDragAndDrop() {
         }))
     }
 
+    function onConnecting(connection) {
+        const sourceNode = findNode(connection.source);
+        const targetNode = findNode(connection.target);
+
+        if (sourceNode.type === 'input' && targetNode.type === 'output') {
+            // Prevent connecting input directly to output
+            console.error('Нельзя напрямую подключать блок FROM с блоками завершения без определения промежуточных блоков.');
+            return; // Do not call addEdges
+        }
+
+        addEdges(connection);
+    }
+
     return {
         draggedType,
         isDragOver,
@@ -129,5 +142,6 @@ export default function useDragAndDrop() {
         onDragOver,
         onDrop,
         updateParams,
+        onConnecting
     }
 }

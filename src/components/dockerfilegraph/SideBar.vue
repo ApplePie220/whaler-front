@@ -13,11 +13,15 @@ const { onDragStart } = useDragAndDrop()
     <div class="nodes">
       <div class="vue-flow__node-input" :draggable="true" @dragstart="onDragStart($event, 'input', 'FROM')">FROM</div>
 
+      <div class="vue-flow__node-default" :draggable="true" @dragstart="onDragStart($event, 'default','WORKDIR')">WORKDIR</div>
+
       <div class="vue-flow__node-default" :draggable="true" @dragstart="onDragStart($event, 'default','COPY')">COPY</div>
 
       <div class="vue-flow__node-default" :draggable="true" @dragstart="onDragStart($event, 'default', 'ADD')">ADD</div>
 
       <div class="vue-flow__node-output" :draggable="true" @dragstart="onDragStart($event, 'output', 'CMD')">CMD</div>
+
+      <div class="vue-flow__node-output" :draggable="true" @dragstart="onDragStart($event, 'output', 'ENTRYPOINT')">ENTRYPOINT</div>
     </div>
   </div>
   </Panel>
@@ -49,7 +53,22 @@ const { onDragStart } = useDragAndDrop()
 .nodes {
   display: flex;
   flex-direction: column;
+  overflow-y: auto;
   margin-top: 10px; /* Добавим отступ сверху */
+}
+
+.nodes::-webkit-scrollbar {
+  width: 5px;
+  height: 10px;
+}
+
+.nodes::-webkit-scrollbar-thumb {
+  background-color: #ccc;
+  border-radius: 10px;
+}
+
+.nodes::-webkit-scrollbar-track {
+  background-color: #f0f0f0;
 }
 
 .vue-flow__node div {

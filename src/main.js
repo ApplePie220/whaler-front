@@ -1,5 +1,10 @@
 import './assets/main.css'
 import 'tailwindcss/tailwind.css'
+import '../node_modules/flowbite-vue/dist/index.css'
+import Toast from "vue-toastification";
+// Import the CSS or use your own!
+import "vue-toastification/dist/index.css";
+import 'flowbite'
 
 import { createApp } from 'vue'
 import App from './App.vue'
@@ -15,4 +20,5 @@ app.use(store)
 app.use(api)
 app.use(ApiPlugin)
 app.use(LoadPlugin)
+app.use(Toast)
 app.mount('#app')
